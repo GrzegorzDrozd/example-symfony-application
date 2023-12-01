@@ -1,0 +1,85 @@
+# create new rating for vico=1
+POST {{host}}:{{port}}/vico/1/ratings
+Content-Type: application/json
+
+{
+  "ratings": [
+    {
+      "name": "communication",
+      "value": 5
+    },
+    {
+      "name": "quality_of_work",
+      "value": 5
+    },
+    {
+      "name": "value",
+      "value": 4
+    }
+  ],
+  "clientId": 1,
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+# create new rating for vico=1
+POST {{host}}:{{port}}/vico/1/comment
+Content-Type: application/json
+
+{
+  "clientId": 1,
+  "comment": "Patrioqueinciderint labores suscipit posidonium nascetur voluptatum rhoncus comprehensam detracto detraxit elitr tantas graeci nisl hendrerit reprehendunt assueverit mus graecis.  Eripuitgloriatur venenatis.  Fugitrutrum vim integer tota antiopam natoque consetetur sollicitudin.\nProdessetmeliore omnesque scelerisque cetero proin recteque magna orci conclusionemque dicam ex epicurei indoctum dissentiunt epicurei eget periculis ligula ne.  Iisquevolumus molestiae idque omnesque sale est dissentiunt partiendo omnesque praesent quidam purus nulla dis dissentiunt."
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+# update rating for vico=1
+PUT {{host}}:{{port}}/vico/1/ratings
+Content-Type: application/json
+
+{
+  "ratings": [
+    {
+      "name": "communication",
+      "value": 5
+    },
+    {
+      "name": "quality_of_work",
+      "value": 5
+    }
+  ],
+  "clientId": 1
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+# create new rating for vico=1
+PUT {{host}}:{{port}}/vico/1/comment
+Content-Type: application/json
+
+{
+  "clientId": 1,
+  "comment": "Patrioqueinciderint."
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
